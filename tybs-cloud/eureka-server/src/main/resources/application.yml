@@ -1,0 +1,19 @@
+server:
+  port: 8761
+spring:
+  application:
+    name: localEureka
+eureka:
+  instance:
+    prefer-ip-address: true
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+    fetch-registry: false
+    register-with-eureka: false
+  server:
+    enable-self-preservation: false
+    eviction-interval-timer-in-ms: 10000
+    response-cache-auto-expiration-in-seconds: 60
+
