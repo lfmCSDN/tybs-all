@@ -12,7 +12,9 @@
 	<artifactId>tybs-services</artifactId>
 	<packaging>pom</packaging>
 	<modules>
-		<module>tybs-login-service</module>
+		<module>tybs-acct-service</module>
+		<module>tybs-operator-service</module>
+		<module>tybs-admin-service</module>
 	</modules>
 
 

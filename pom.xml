@@ -12,7 +12,7 @@
 		<module>tybs-cloud</module>
 		<module>tybs-services</module>
 		<module>tybs-webapp</module>
-		<module>tybs-common-services</module>
+		<module>tybs-common</module>
 	</modules>
 
 	<parent>
@@ -74,8 +74,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
-
-
 
 </project>

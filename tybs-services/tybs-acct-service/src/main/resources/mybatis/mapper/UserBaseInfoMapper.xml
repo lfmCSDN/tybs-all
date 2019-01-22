@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ty.acctservice.mapper.UserBaseInfoMapper">
+    <!--根据主键键查找user表对象-->
+    <select id="getObjectByPrimarykey" resultType="po.UserBaseInfo">
+        SELECT * FROM user_base_info
+        WHERE user_Base_Info_Id = #{userBaseInfoId}
+    </select>
+</mapper>

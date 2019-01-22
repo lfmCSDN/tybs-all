@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ Youlema.com Inc.
+  ~ Copyright (c) 2011-2013 All Rights Reserved
+  -->
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mapper 为根元素节点， 一个namespace对应一个dao -->
+<mapper namespace="com.ty.operatorservice.mapper.UserBaseInfoMapper">
+    <!--根据外键查找user表对象-->
+    <select id="getObjectByForeignKey" resultType="po.UserBaseInfo">
+        SELECT * FROM user_base_info
+        WHERE card_Base_Info_Id = #{cardBaseInfoId}
+    </select>
+
+    <!--根据身份证号查找user对象-->
+    <select id="getObjectByCardId" resultType="po.UserBaseInfo">
+        SELECT * FROM user_base_info
+        WHERE user_Card_Id = #{userCardId}
+    </select>
+
+
+    <!--添加账户基本信息-->
+    <insert id="addUserBaseInfo" parameterType="vo.UserAndCardVo">
+        INSERT INTO user_base_info(user_Base_Info_Id,user_Name,user_Card_Id,user_Tel,user_Email,user_Address,user_Sex)
+        VALUES (#{userAndCardVo.userBaseInfoId},
+                #{userAndCardVo.userName},
+                #{userAndCardVo.userCardId},
+                #{userAndCardVo.userTel},
+                #{userAndCardVo.userEmail},
+                #{userAndCardVo.userAddress},
+                #{userAndCardVo.userSex})
+    </insert>
+
+    <!--获取用户和账户信息-->
+    <select id="getUserByIdCard" resultType="vo.UserAndCardVo" parameterType="qo.UserAndCardQo">
+        SELECT * FROM user_base_info u,card_base_info c WHERE u.user_Base_Info_Id=c.user_Base_Info_Id AND u.user_Card_Id = #{userAndCardQo.userCardId}
+    </select>
+
+    <!--修改账户信息-->
+    <update id="modifyTelUser" parameterType="qo.UserBaseInfoQo">
+        UPDATE user_base_info SET
+        user_Base_Info_Id=#{userBaseInfoQo.userBaseInfoId},
+                 user_Tel= #{userBaseInfoQo.userTel},
+               user_Email= #{userBaseInfoQo.userEmail},
+             user_Address= #{userBaseInfoQo.userAddress}
+        WHERE user_Card_Id = #{userBaseInfoQo.userCardId}
+    </update>
+
+    <!--获取用户信息-->
+    <select id="getAcct" resultType="vo.UserBaseInfoVo" parameterType="qo.UserBaseInfoQo">
+        SELECT * FROM user_base_info WHERE user_Card_Id = #{userBaseInfoQo.userCardId}
+    </select>
+
+
+    <!--根据主键键查找user表对象-->
+    <select id="getObjectByPrimarykey" resultType="po.UserBaseInfo">
+        SELECT * FROM user_base_info
+        WHERE user_Base_Info_Id = #{userBaseInfoId}
+    </select>
+
+
+</mapper>
